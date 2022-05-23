@@ -88,10 +88,10 @@ public class MonApplication implements ActionListener, SelectionListener{
         if(e.getActionCommand().equals("Lance Parcours")){
             JOptionPane.showMessageDialog(null, "Parcours lancé");
             if(source == null){
-                JOptionPane.showMessageDialog(null, "!!! Pas de point source...");
+                JOptionPane.showMessageDialog(null, " Pas de point source...");
             }
             else if(destination == null){
-                JOptionPane.showMessageDialog(null, "!!! Pas de point de destination...");
+                JOptionPane.showMessageDialog(null, " Pas de point de destination...");
             }
             else{
                 HashMap<Node,Node> parcours = MonApplication.parcoursleplusrapide(tp, source, obstacles);
@@ -101,7 +101,7 @@ public class MonApplication implements ActionListener, SelectionListener{
                     JOptionPane.showMessageDialog(null, cheminInString(cheminL));
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "!!! Le noeud source n'est pas connecté au graphe du noeud destination\n"
+                    JOptionPane.showMessageDialog(null, " Le noeud source n'est pas connecté au graphe du noeud destination \n"
                             + "ou des obstacles empêchent de trouver la destination");
                 }
                 
@@ -111,10 +111,10 @@ public class MonApplication implements ActionListener, SelectionListener{
         if (e.getActionCommand().equals("Arbre")){
             JOptionPane.showMessageDialog(null, "Visualisation de l'arbre");
             if(source == null){
-                JOptionPane.showMessageDialog(null, "!!! Pas de point source...");
+                JOptionPane.showMessageDialog(null, " Pas de point source...");
             }
             else if(destination == null){
-                JOptionPane.showMessageDialog(null, "!!! Pas de point de destination...");
+                JOptionPane.showMessageDialog(null, " Pas de point de destination...");
             }
             else{
             HashMap<Node,Node> parcours = MonApplication.parcoursEnLargeur(tp, source, obstacles);
@@ -138,6 +138,7 @@ public class MonApplication implements ActionListener, SelectionListener{
             for(Node n:obstacles){
                 n.setIcon(Icons.DEFAULT_NODE_ICON);
             }
+            obstacles.clear();
             for(Node n1:tp.getNodes()){
                 for(Node n2:n1.getNeighbors()){
                     n1.getCommonLinkWith(n2).setWidth(1);
