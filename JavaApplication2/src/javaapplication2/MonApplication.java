@@ -136,7 +136,7 @@ public class MonApplication implements ActionListener, SelectionListener{
                 cheminL = null;
             }
             for(Node n:obstacles){
-                n.setColor(null);
+                n.setIcon(Icons.DEFAULT_NODE_ICON);
             }
             for(Node n1:tp.getNodes()){
                 for(Node n2:n1.getNeighbors()){
@@ -145,7 +145,10 @@ public class MonApplication implements ActionListener, SelectionListener{
             }
         }
     }
-
+    /**
+     * 
+     * @param n 
+     */
     @Override
     public void onSelection(Node n) {
         if(source == null){
@@ -159,7 +162,7 @@ public class MonApplication implements ActionListener, SelectionListener{
         else
         {
             obstacles.add(n);
-            n.setColor(Color.red);
+            n.setIcon(Icons.ROBOT);
         }
     }
     
@@ -189,6 +192,13 @@ public class MonApplication implements ActionListener, SelectionListener{
         return parent;
         
     }
+    /**
+     * 
+     * @param Graphe
+     * @param source
+     * @param obst
+     * @return 
+     */
     static HashMap<Node,Node> parcoursleplusrapide(Topology Graphe, Node source, ArrayList<Node> obst){
         HashMap<Node,Node> parent = new HashMap<Node,Node>();
         LinkedList<Node> file= new LinkedList<Node>();
