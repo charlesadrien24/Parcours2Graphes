@@ -21,7 +21,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author etd
+ * @author guillemin
  */
 public class MonApplication implements ActionListener, SelectionListener{
     Topology tp; // Objet qui contient le graphe
@@ -85,6 +85,7 @@ public class MonApplication implements ActionListener, SelectionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Chemin le plus rapide
         if(e.getActionCommand().equals("Lance Parcours")){
             JOptionPane.showMessageDialog(null, "Parcours lancé");
             if(source == null){
@@ -108,6 +109,7 @@ public class MonApplication implements ActionListener, SelectionListener{
             }
             
         }
+        //Parcours en largeur
         if (e.getActionCommand().equals("Arbre")){
             JOptionPane.showMessageDialog(null, "Visualisation de l'arbre");
             if(source == null){
@@ -122,7 +124,6 @@ public class MonApplication implements ActionListener, SelectionListener{
         }
         //Reset de la source et de la destination
         if(e.getActionCommand().equals("Reset")){
-            //JOptionPane.showMessageDialog(null, "Ceci est un parcours en largeur");
             if(destination != null){
                 destination.setIcon(Icons.DEFAULT_NODE_ICON);
                 destination = null;
@@ -147,7 +148,7 @@ public class MonApplication implements ActionListener, SelectionListener{
         }
     }
     /**
-     * 
+     * Création des points choisi par l'utilisateur
      * @param n 
      */
     @Override
@@ -173,7 +174,7 @@ public class MonApplication implements ActionListener, SelectionListener{
      * @param Graphe le graphe
      * @param source le noeud source
      * @return HashMap<Node,Node> le tableau rempli
-     * @author fvoneuw
+     * @author 
      */
     static HashMap<Node,Node> parcoursEnLargeur(Topology Graphe, Node source, ArrayList<Node> obst){
         HashMap<Node,Node> parent = new HashMap<Node,Node>();
@@ -231,15 +232,11 @@ public class MonApplication implements ActionListener, SelectionListener{
         LinkedList<Node> cheminCourt = new LinkedList<Node>();
         cheminCourt.add(dest);
         Node cnode = dest;
-        //faire le chemin de Source à Destination
         while(!cnode.equals(src)){
             Node child = cnode;
             cnode = arbreLargeur.get(cnode);
             cheminCourt.add(cnode);
-            if(cnode == null){
-                return null;
             }
-        }
         return cheminCourt;
     }
     
