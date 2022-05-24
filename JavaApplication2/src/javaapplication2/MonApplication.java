@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  *
@@ -272,6 +274,23 @@ public class MonApplication implements ActionListener, SelectionListener{
         return "Noeuds liés : \n" + message;
     }
 
-    
-    
+ static HashMap<Node,Node> parcoursEnLargeurPirorityQueue(Topology Graphe, Node source, ArrayList<Node> obst){
+        HashMap<Node,Node> parent = new HashMap<Node,Node>();
+        LinkedList<Node> file= new LinkedList<Node>();
+        file.add(source);
+        parent.put(source, source);
+        Queue<Node> queue = new PriorityQueue<>();
+        while(file.peek() != null){
+            Node cnode = file.remove();
+            for(Node nv:cnode.getNeighbors()){
+                if(parent.get(nv) == null && !obst.contains(nv)){
+                    parent.put(nv, cnode);
+                    nv.getCommonLinkWith(parent.get(nv)).setWidth(4);
+                    file.add(nv);
+                }
+            }
+        }
+        return parent;
+        
+    }
 }
